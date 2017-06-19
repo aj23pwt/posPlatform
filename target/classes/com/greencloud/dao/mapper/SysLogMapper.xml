@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.greencloud.dao.SysLogMapper" >
+  <resultMap id="BaseResultMap" type="com.greencloud.dao.vo.SysLog" >
+    <id column="id_" property="id" jdbcType="INTEGER" />
+    <result column="type_key_" property="typeKey" jdbcType="INTEGER" />
+    <result column="type_value_" property="typeValue" jdbcType="VARCHAR" />
+    <result column="content_" property="content" jdbcType="VARCHAR" />
+    <result column="result_" property="result" jdbcType="CHAR" />
+    <result column="operator_" property="operator" jdbcType="INTEGER" />
+    <result column="operation_time_" property="operationTime" jdbcType="TIMESTAMP" />
+    <result column="failure_cause_" property="failureCause" jdbcType="VARCHAR" />
+    <result column="ip_" property="ip" jdbcType="VARCHAR" />
+    <result column="params_" property="params" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id_, type_key_, type_value_, content_, result_, operator_, operation_time_, failure_cause_, 
+    ip_, params_
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from sys_log
+    where id_ = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from sys_log
+    where id_ = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.greencloud.dao.vo.SysLog" >
+    insert into sys_log (id_, type_key_, type_value_, 
+      content_, result_, operator_, 
+      operation_time_, failure_cause_, ip_, 
+      params_)
+    values (#{id,jdbcType=INTEGER}, #{typeKey,jdbcType=INTEGER}, #{typeValue,jdbcType=VARCHAR}, 
+      #{content,jdbcType=VARCHAR}, #{result,jdbcType=CHAR}, #{operator,jdbcType=INTEGER}, 
+      #{operationTime,jdbcType=TIMESTAMP}, #{failureCause,jdbcType=VARCHAR}, #{ip,jdbcType=VARCHAR}, 
+      #{params,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.greencloud.dao.vo.SysLog" >
+    insert into sys_log
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id_,
+      </if>
+      <if test="typeKey != null" >
+        type_key_,
+      </if>
+      <if test="typeValue != null" >
+        type_value_,
+      </if>
+      <if test="content != null" >
+        content_,
+      </if>
+      <if test="result != null" >
+        result_,
+      </if>
+      <if test="operator != null" >
+        operator_,
+      </if>
+        operation_time_,
+      <if test="failureCause != null" >
+        failure_cause_,
+      </if>
+      <if test="ip != null" >
+        ip_,
+      </if>
+      <if test="params != null" >
+        params_,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="typeKey != null" >
+        #{typeKey,jdbcType=INTEGER},
+      </if>
+      <if test="typeValue != null" >
+        #{typeValue,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null" >
+        #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="result != null" >
+        #{result,jdbcType=CHAR},
+      </if>
+      <if test="operator != null" >
+        #{operator,jdbcType=INTEGER},
+      </if>
+      	now(),
+      <if test="failureCause != null" >
+        #{failureCause,jdbcType=VARCHAR},
+      </if>
+      <if test="ip != null" >
+        #{ip,jdbcType=VARCHAR},
+      </if>
+      <if test="params != null" >
+        #{params,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.greencloud.dao.vo.SysLog" >
+    update sys_log
+    <set >
+      <if test="typeKey != null" >
+        type_key_ = #{typeKey,jdbcType=INTEGER},
+      </if>
+      <if test="typeValue != null" >
+        type_value_ = #{typeValue,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null" >
+        content_ = #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="result != null" >
+        result_ = #{result,jdbcType=CHAR},
+      </if>
+      <if test="operator != null" >
+        operator_ = #{operator,jdbcType=INTEGER},
+      </if>
+      <if test="operationTime != null" >
+        operation_time_ = #{operationTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="failureCause != null" >
+        failure_cause_ = #{failureCause,jdbcType=VARCHAR},
+      </if>
+      <if test="ip != null" >
+        ip_ = #{ip,jdbcType=VARCHAR},
+      </if>
+      <if test="params != null" >
+        params_ = #{params,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id_ = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.greencloud.dao.vo.SysLog" >
+    update sys_log
+    set type_key_ = #{typeKey,jdbcType=INTEGER},
+      type_value_ = #{typeValue,jdbcType=VARCHAR},
+      content_ = #{content,jdbcType=VARCHAR},
+      result_ = #{result,jdbcType=CHAR},
+      operator_ = #{operator,jdbcType=INTEGER},
+      operation_time_ = #{operationTime,jdbcType=TIMESTAMP},
+      failure_cause_ = #{failureCause,jdbcType=VARCHAR},
+      ip_ = #{ip,jdbcType=VARCHAR},
+      params_ = #{params,jdbcType=VARCHAR}
+    where id_ = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

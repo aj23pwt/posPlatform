@@ -1,0 +1,42 @@
+{
+  "hints": [],
+  "properties": [
+    {
+      "sourceType": "com.greencloud.config.TestConfiguration",
+      "name": "pos.name",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.greencloud.config.TestConfiguration",
+      "name": "pos.want",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.greencloud.config.SysParamet",
+      "name": "sys.encoding",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.greencloud.config.SysParamet",
+      "name": "sys.max-upload-size",
+      "type": "java.lang.Long"
+    },
+    {
+      "sourceType": "com.greencloud.config.SysParamet",
+      "name": "sys.path",
+      "type": "java.lang.String"
+    }
+  ],
+  "groups": [
+    {
+      "sourceType": "com.greencloud.config.TestConfiguration",
+      "name": "pos",
+      "type": "com.greencloud.config.TestConfiguration"
+    },
+    {
+      "sourceType": "com.greencloud.config.SysParamet",
+      "name": "sys",
+      "type": "com.greencloud.config.SysParamet"
+    }
+  ]
+}
