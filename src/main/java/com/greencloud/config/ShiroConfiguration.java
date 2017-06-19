@@ -66,7 +66,8 @@ public class ShiroConfiguration {
 	public ShiroFilterFactoryBean getShiroFilterFactoryBean(DefaultWebSecurityManager securityManager){
 		ShiroFilterFactoryBean bean = new ShiroFilterFactoryBean();
 		bean.setSecurityManager(securityManager);
-		bean.setLoginUrl("/");
+		//目前只针对 login 进行权限拦截
+		bean.setLoginUrl("/login");
 		//用户访问未对其授权的资源时，所显示的连接
 		bean.setUnauthorizedUrl("/auth/unauthorized");
 		Map<String, String> filterChainDefinitionMap = new HashMap<String, String>();
