@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.greencloud.dao.SysUserMapper" >
+  <resultMap id="BaseResultMap" type="com.greencloud.dao.vo.SysUser" >
+    <id column="id_" property="id" jdbcType="INTEGER" />
+    <result column="account_" property="account" jdbcType="VARCHAR" />
+    <result column="password_" property="password" jdbcType="VARCHAR" />
+    <result column="sex_" property="sex" jdbcType="CHAR" />
+    <result column="user_name" property="userName" jdbcType="VARCHAR" />
+    <result column="avatar_" property="avatar" jdbcType="VARCHAR" />
+    <result column="user_type" property="userType" jdbcType="CHAR" />
+    <result column="dept_id" property="deptId" jdbcType="INTEGER" />
+    <result column="locked_" property="locked" jdbcType="CHAR" />
+    <result column="usable_" property="usable" jdbcType="CHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id_, account_, password_, sex_, user_name, avatar_, user_type, dept_id, locked_, 
+    usable_, create_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from sys_user
+    where id_ = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectByAccountAndPassword" resultMap="BaseResultMap" parameterType="com.greencloud.dao.vo.SysUser" >
+    select 
+    <include refid="Base_Column_List" />
+    from sys_user
+    where 1=1
+    <if test="account != null" >
+        and account_ = #{account,jdbcType=VARCHAR}
+    </if>
+    <if test="password != null" >
+     	and password_ = #{password,jdbcType=VARCHAR}
+    </if>
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from sys_user
+    where id_ = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.greencloud.dao.vo.SysUser" >
+    insert into sys_user (id_, account_, password_, 
+      sex_, user_name, avatar_, 
+      user_type, dept_id, locked_, 
+      usable_, create_time)
+    values (#{id,jdbcType=INTEGER}, #{account,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
+      #{sex,jdbcType=CHAR}, #{userName,jdbcType=VARCHAR}, #{avatar,jdbcType=VARCHAR}, 
+      #{userType,jdbcType=CHAR}, #{deptId,jdbcType=INTEGER}, #{locked,jdbcType=CHAR}, 
+      #{usable,jdbcType=CHAR}, #{createTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.greencloud.dao.vo.SysUser" >
+    insert into sys_user
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id_,
+      </if>
+      <if test="account != null" >
+        account_,
+      </if>
+      <if test="password != null" >
+        password_,
+      </if>
+      <if test="sex != null" >
+        sex_,
+      </if>
+      <if test="userName != null" >
+        user_name,
+      </if>
+      <if test="avatar != null" >
+        avatar_,
+      </if>
+      <if test="userType != null" >
+        user_type,
+      </if>
+      <if test="deptId != null" >
+        dept_id,
+      </if>
+      <if test="locked != null" >
+        locked_,
+      </if>
+      <if test="usable != null" >
+        usable_,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="account != null" >
+        #{account,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null" >
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null" >
+        #{sex,jdbcType=CHAR},
+      </if>
+      <if test="userName != null" >
+        #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="avatar != null" >
+        #{avatar,jdbcType=VARCHAR},
+      </if>
+      <if test="userType != null" >
+        #{userType,jdbcType=CHAR},
+      </if>
+      <if test="deptId != null" >
+        #{deptId,jdbcType=INTEGER},
+      </if>
+      <if test="locked != null" >
+        #{locked,jdbcType=CHAR},
+      </if>
+      <if test="usable != null" >
+        #{usable,jdbcType=CHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.greencloud.dao.vo.SysUser" >
+    update sys_user
+    <set >
+      <if test="account != null" >
+        account_ = #{account,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null" >
+        password_ = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null" >
+        sex_ = #{sex,jdbcType=CHAR},
+      </if>
+      <if test="userName != null" >
+        user_name = #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="avatar != null" >
+        avatar_ = #{avatar,jdbcType=VARCHAR},
+      </if>
+      <if test="userType != null" >
+        user_type = #{userType,jdbcType=CHAR},
+      </if>
+      <if test="deptId != null" >
+        dept_id = #{deptId,jdbcType=INTEGER},
+      </if>
+      <if test="locked != null" >
+        locked_ = #{locked,jdbcType=CHAR},
+      </if>
+      <if test="usable != null" >
+        usable_ = #{usable,jdbcType=CHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id_ = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.greencloud.dao.vo.SysUser" >
+    update sys_user
+    set account_ = #{account,jdbcType=VARCHAR},
+      password_ = #{password,jdbcType=VARCHAR},
+      sex_ = #{sex,jdbcType=CHAR},
+      user_name = #{userName,jdbcType=VARCHAR},
+      avatar_ = #{avatar,jdbcType=VARCHAR},
+      user_type = #{userType,jdbcType=CHAR},
+      dept_id = #{deptId,jdbcType=INTEGER},
+      locked_ = #{locked,jdbcType=CHAR},
+      usable_ = #{usable,jdbcType=CHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP}
+    where id_ = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
